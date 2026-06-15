@@ -1,16 +1,13 @@
-/*
- * STUB - This is a placeholder class to allow compilation.
- * The original module was removed from this build.
- */
-
 package meteordevelopment.meteorclient.systems.modules.misc;
-
 import meteordevelopment.meteorclient.systems.modules.Categories;
 import meteordevelopment.meteorclient.systems.modules.Module;
-
+import java.io.File;
 public class Notebot extends Module {
-    public Notebot() {
-        super(Categories.Combat, "notebot", "Stub module - not active.");
-        this.setActive(false);
-    }
+    public Notebot() { super(Categories.Combat, "notebot", "Stub"); }
+    public void playRandomSong() {}
+    public void loadSong(File f) {}
+    public void previewSong(File f) {}
+    public void pause() {}
+    public void stop() {}
+    public String getStatus() { return "disabled"; }
 }
