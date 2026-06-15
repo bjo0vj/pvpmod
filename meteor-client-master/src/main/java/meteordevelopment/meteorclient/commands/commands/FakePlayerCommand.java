@@ -10,7 +10,7 @@ import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import meteordevelopment.meteorclient.commands.Command;
 import meteordevelopment.meteorclient.commands.arguments.FakePlayerArgumentType;
 import meteordevelopment.meteorclient.systems.modules.Modules;
-// import meteordevelopment.meteorclient.systems.modules.player.FakePlayer; // AUTO-REMOVED
+import meteordevelopment.meteorclient.systems.modules.player.FakePlayer;
 import meteordevelopment.meteorclient.utils.entity.fakeplayer.FakePlayerEntity;
 import meteordevelopment.meteorclient.utils.entity.fakeplayer.FakePlayerManager;
 import meteordevelopment.meteorclient.utils.player.ChatUtils;
@@ -25,14 +25,14 @@ public class FakePlayerCommand extends Command {
     public void build(LiteralArgumentBuilder<ClientSuggestionProvider> builder) {
         builder.then(literal("add")
             .executes(_ -> {
-//                 FakePlayer fakePlayer = Modules.get().get(FakePlayer.class); // AUTO-REMOVED
-//                 FakePlayerManager.add(fakePlayer.name.get(), fakePlayer.health.get(), fakePlayer.copyInv.get()); // AUTO-REMOVED
+                FakePlayer fakePlayer = Modules.get().get(FakePlayer.class);
+                FakePlayerManager.add(fakePlayer.name.get(), fakePlayer.health.get(), fakePlayer.copyInv.get());
                 return SINGLE_SUCCESS;
             })
             .then(argument("name", StringArgumentType.word())
                 .executes(context -> {
-//                     FakePlayer fakePlayer = Modules.get().get(FakePlayer.class); // AUTO-REMOVED
-//                     FakePlayerManager.add(StringArgumentType.getString(context, "name"), fakePlayer.health.get(), fakePlayer.copyInv.get()); // AUTO-REMOVED
+                    FakePlayer fakePlayer = Modules.get().get(FakePlayer.class);
+                    FakePlayerManager.add(StringArgumentType.getString(context, "name"), fakePlayer.health.get(), fakePlayer.copyInv.get());
                     return SINGLE_SUCCESS;
                 })
             )

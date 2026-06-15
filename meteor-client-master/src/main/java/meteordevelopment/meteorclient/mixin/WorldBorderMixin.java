@@ -6,7 +6,7 @@
 package meteordevelopment.meteorclient.mixin;
 
 import meteordevelopment.meteorclient.systems.modules.Modules;
-// import meteordevelopment.meteorclient.systems.modules.world.Collisions; // AUTO-REMOVED
+import meteordevelopment.meteorclient.systems.modules.world.Collisions;
 import net.minecraft.world.level.border.WorldBorder;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -17,11 +17,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public abstract class WorldBorderMixin {
     @Inject(method = "isInsideCloseToBorder", at = @At("HEAD"), cancellable = true)
     private void canCollide(CallbackInfoReturnable<Boolean> cir) {
-//         if (Modules.get().get(Collisions.class).ignoreBorder()) cir.setReturnValue(false); // AUTO-REMOVED
+        if (Modules.get().get(Collisions.class).ignoreBorder()) cir.setReturnValue(false);
     }
 
     @Inject(method = "isWithinBounds(Lnet/minecraft/core/BlockPos;)Z", at = @At("HEAD"), cancellable = true)
     private void contains(CallbackInfoReturnable<Boolean> cir) {
-//         if (Modules.get().get(Collisions.class).ignoreBorder()) cir.setReturnValue(true); // AUTO-REMOVED
+        if (Modules.get().get(Collisions.class).ignoreBorder()) cir.setReturnValue(true);
     }
 }

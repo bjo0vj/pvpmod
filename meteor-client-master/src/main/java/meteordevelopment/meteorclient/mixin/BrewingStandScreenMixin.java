@@ -6,7 +6,7 @@
 package meteordevelopment.meteorclient.mixin;
 
 import meteordevelopment.meteorclient.systems.modules.Modules;
-// import meteordevelopment.meteorclient.systems.modules.world.AutoBrewer; // AUTO-REMOVED
+import meteordevelopment.meteorclient.systems.modules.world.AutoBrewer;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.gui.screens.inventory.BrewingStandScreen;
 import net.minecraft.network.chat.Component;
@@ -24,12 +24,12 @@ public abstract class BrewingStandScreenMixin extends AbstractContainerScreen<Br
     public void containerTick() {
         super.containerTick();
 
-//         if (Modules.get().isActive(AutoBrewer.class)) Modules.get().get(AutoBrewer.class).tick(menu); // AUTO-REMOVED
+        if (Modules.get().isActive(AutoBrewer.class)) Modules.get().get(AutoBrewer.class).tick(menu);
     }
 
     @Override
     public void onClose() {
-//         if (Modules.get().isActive(AutoBrewer.class)) Modules.get().get(AutoBrewer.class).onBrewingStandClose(); // AUTO-REMOVED
+        if (Modules.get().isActive(AutoBrewer.class)) Modules.get().get(AutoBrewer.class).onBrewingStandClose();
 
         super.onClose();
     }

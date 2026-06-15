@@ -19,7 +19,7 @@ import meteordevelopment.meteorclient.mixininterface.IEntityRenderState;
 import meteordevelopment.meteorclient.mixininterface.ILevelRenderer;
 import meteordevelopment.meteorclient.systems.modules.Modules;
 import meteordevelopment.meteorclient.systems.modules.render.*;
-// import meteordevelopment.meteorclient.systems.modules.world.Ambience; // AUTO-REMOVED
+import meteordevelopment.meteorclient.systems.modules.world.Ambience;
 import meteordevelopment.meteorclient.utils.OutlineRenderCommandQueue;
 import meteordevelopment.meteorclient.utils.render.NoopImmediateVertexConsumerProvider;
 import meteordevelopment.meteorclient.utils.render.NoopOutlineVertexConsumerProvider;
@@ -205,10 +205,10 @@ public abstract class LevelRendererMixin implements ILevelRenderer {
 
     @Inject(method = "extractLevel", at = @At(value = "FIELD", target = "Lnet/minecraft/client/renderer/state/level/LevelRenderState;cloudColor:I", opcode = Opcodes.PUTFIELD, shift = At.Shift.AFTER))
     private void extractLevel$cloudColor(DeltaTracker deltaTracker, Camera camera, float deltaPartialTick, CallbackInfo ci) {
-//         Ambience ambience = Modules.get().get(Ambience.class); // AUTO-REMOVED
+        Ambience ambience = Modules.get().get(Ambience.class);
 
-//         if (ambience.isActive() && ambience.customCloudColor.get()) { // AUTO-REMOVED
-//             levelRenderState.cloudColor = ambience.cloudColor.get().getPacked(); // AUTO-REMOVED
+        if (ambience.isActive() && ambience.customCloudColor.get()) {
+            levelRenderState.cloudColor = ambience.cloudColor.get().getPacked();
         }
     }
 

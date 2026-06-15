@@ -8,7 +8,7 @@ package meteordevelopment.meteorclient.mixin;
 import meteordevelopment.meteorclient.gui.GuiThemes;
 import meteordevelopment.meteorclient.systems.config.Config;
 import meteordevelopment.meteorclient.systems.modules.Modules;
-// import meteordevelopment.meteorclient.systems.modules.player.NameProtect; // AUTO-REMOVED
+import meteordevelopment.meteorclient.systems.modules.player.NameProtect;
 import meteordevelopment.meteorclient.systems.proxies.Proxies;
 import meteordevelopment.meteorclient.systems.proxies.Proxy;
 import meteordevelopment.meteorclient.utils.render.color.Color;
@@ -131,7 +131,7 @@ public abstract class JoinMultiplayerScreenMixin extends Screen {
         // Logged in as
         if (config.showAccountStatus.get()) {
             graphics.text(mc.font, loggedInAs, x, y, textColor1);
-//             graphics.text(mc.font, Modules.get().get(NameProtect.class).getName(minecraft.getUser().getName()), x + loggedInAsLength, y, textColor2); // AUTO-REMOVED
+            graphics.text(mc.font, Modules.get().get(NameProtect.class).getName(minecraft.getUser().getName()), x + loggedInAsLength, y, textColor2);
 
             y += font.lineHeight + 2;
         }

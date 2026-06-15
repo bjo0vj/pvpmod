@@ -14,8 +14,8 @@ import meteordevelopment.meteorclient.systems.modules.Modules;
 import meteordevelopment.meteorclient.systems.modules.movement.Flight;
 import meteordevelopment.meteorclient.systems.modules.movement.NoSlow;
 import meteordevelopment.meteorclient.systems.modules.movement.Sprint;
-// import meteordevelopment.meteorclient.systems.modules.player.Reach; // AUTO-REMOVED
-// import meteordevelopment.meteorclient.systems.modules.player.SpeedMine; // AUTO-REMOVED
+import meteordevelopment.meteorclient.systems.modules.player.Reach;
+import meteordevelopment.meteorclient.systems.modules.player.SpeedMine;
 import meteordevelopment.meteorclient.utils.world.BlockUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.EntityType;
@@ -74,15 +74,15 @@ public abstract class PlayerMixin extends LivingEntity {
     public float onGetBlockBreakingSpeed(float breakSpeed, BlockState state) {
         if (!level().isClientSide()) return breakSpeed;
 
-//         SpeedMine speedMine = Modules.get().get(SpeedMine.class); // AUTO-REMOVED
-//         if (!speedMine.isActive() || speedMine.mode.get() != SpeedMine.Mode.Normal || !speedMine.filter(state.getBlock())) // AUTO-REMOVED
+        SpeedMine speedMine = Modules.get().get(SpeedMine.class);
+        if (!speedMine.isActive() || speedMine.mode.get() != SpeedMine.Mode.Normal || !speedMine.filter(state.getBlock()))
             return breakSpeed;
 
-//         float breakSpeedMod = (float) (breakSpeed * speedMine.modifier.get()); // AUTO-REMOVED
+        float breakSpeedMod = (float) (breakSpeed * speedMine.modifier.get());
 
         if (mc.hitResult instanceof BlockHitResult bhr) {
             BlockPos pos = bhr.getBlockPos();
-//             if (speedMine.modifier.get() < 1 || (BlockUtils.canInstaBreak(pos, breakSpeed) == BlockUtils.canInstaBreak(pos, breakSpeedMod))) { // AUTO-REMOVED
+            if (speedMine.modifier.get() < 1 || (BlockUtils.canInstaBreak(pos, breakSpeed) == BlockUtils.canInstaBreak(pos, breakSpeedMod))) {
                 return breakSpeedMod;
             } else {
                 return 0.9f / BlockUtils.calcBlockBreakingDelta2(pos, 1);
@@ -127,11 +127,11 @@ public abstract class PlayerMixin extends LivingEntity {
 
     @ModifyReturnValue(method = "blockInteractionRange", at = @At("RETURN"))
     private double modifyBlockInteractionRange(double original) {
-//         return Math.max(0, original + Modules.get().get(Reach.class).blockReach()); // AUTO-REMOVED
+        return Math.max(0, original + Modules.get().get(Reach.class).blockReach());
     }
 
     @ModifyReturnValue(method = "entityInteractionRange", at = @At("RETURN"))
     private double modifyEntityInteractionRange(double original) {
-//         return Math.max(0, original + Modules.get().get(Reach.class).entityReach()); // AUTO-REMOVED
+        return Math.max(0, original + Modules.get().get(Reach.class).entityReach());
     }
 }

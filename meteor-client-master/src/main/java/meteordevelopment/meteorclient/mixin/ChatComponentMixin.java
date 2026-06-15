@@ -15,7 +15,7 @@ import meteordevelopment.meteorclient.mixininterface.IChatListener;
 import meteordevelopment.meteorclient.mixininterface.IGuiMessage;
 import meteordevelopment.meteorclient.mixininterface.IGuiMessageVisible;
 import meteordevelopment.meteorclient.systems.modules.Modules;
-// import meteordevelopment.meteorclient.systems.modules.misc.BetterChat; // AUTO-REMOVED
+import meteordevelopment.meteorclient.systems.modules.misc.BetterChat;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.ChatComponent;
 import net.minecraft.client.multiplayer.chat.GuiMessage;
@@ -48,7 +48,7 @@ public abstract class ChatComponentMixin implements IChatHud {
     private List<GuiMessage> allMessages;
 
     @Unique
-//     private BetterChat betterChat; // AUTO-REMOVED
+    private BetterChat betterChat;
     @Unique
     private int nextId;
 
@@ -122,14 +122,14 @@ public abstract class ChatComponentMixin implements IChatHud {
     private int maxLength(int size) {
         if (Modules.get() == null || !getBetterChat().isLongerChat()) return size;
 
-//         return size + betterChat.getExtraChatLines(); // AUTO-REMOVED
+        return size + betterChat.getExtraChatLines();
     }
 
     @ModifyExpressionValue(method = "addMessageToDisplayQueue", at = @At(value = "CONSTANT", args = "intValue=100"))
     private int maxLengthVisible(int size) {
         if (Modules.get() == null || !getBetterChat().isLongerChat()) return size;
 
-//         return size + betterChat.getExtraChatLines(); // AUTO-REMOVED
+        return size + betterChat.getExtraChatLines();
     }
 
     // Player Heads
@@ -153,10 +153,10 @@ public abstract class ChatComponentMixin implements IChatHud {
         if (Modules.get() == null) return;
 
         int extra = getBetterChat().isLongerChat() ? getBetterChat().getExtraChatLines() : 0;
-//         int size = betterChat.lines.size(); // AUTO-REMOVED
+        int size = betterChat.lines.size();
 
         while (size > 100 + extra) {
-//             betterChat.lines.removeLast(); // AUTO-REMOVED
+            betterChat.lines.removeLast();
             size--;
         }
     }
@@ -173,11 +173,11 @@ public abstract class ChatComponentMixin implements IChatHud {
 
     // Other
     @Unique
-//     private BetterChat getBetterChat() { // AUTO-REMOVED
-//         if (betterChat == null) { // AUTO-REMOVED
-//             betterChat = Modules.get().get(BetterChat.class); // AUTO-REMOVED
+    private BetterChat getBetterChat() {
+        if (betterChat == null) {
+            betterChat = Modules.get().get(BetterChat.class);
         }
 
-//         return betterChat; // AUTO-REMOVED
+        return betterChat;
     }
 }

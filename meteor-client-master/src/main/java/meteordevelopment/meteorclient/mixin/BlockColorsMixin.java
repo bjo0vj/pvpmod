@@ -6,7 +6,7 @@
 package meteordevelopment.meteorclient.mixin;
 
 import meteordevelopment.meteorclient.systems.modules.Modules;
-// import meteordevelopment.meteorclient.systems.modules.world.Ambience; // AUTO-REMOVED
+import meteordevelopment.meteorclient.systems.modules.world.Ambience;
 import net.minecraft.client.color.block.BlockColors;
 import net.minecraft.client.color.block.BlockTintSource;
 import org.spongepowered.asm.mixin.Mixin;
@@ -50,9 +50,9 @@ public abstract class BlockColorsMixin {
     private static int getModifiedColor(int original) {
         if (Modules.get() == null) return original;
 
-//         Ambience ambience = Modules.get().get(Ambience.class); // AUTO-REMOVED
-//         if (ambience.isActive() && ambience.customFoliageColor.get()) { // AUTO-REMOVED
-//             return ambience.foliageColor.get().getPacked(); // AUTO-REMOVED
+        Ambience ambience = Modules.get().get(Ambience.class);
+        if (ambience.isActive() && ambience.customFoliageColor.get()) {
+            return ambience.foliageColor.get().getPacked();
         }
 
         return original;

@@ -6,7 +6,7 @@
 package meteordevelopment.meteorclient.mixin;
 
 import meteordevelopment.meteorclient.systems.modules.Modules;
-// import meteordevelopment.meteorclient.systems.modules.world.Ambience; // AUTO-REMOVED
+import meteordevelopment.meteorclient.systems.modules.world.Ambience;
 import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.client.renderer.block.BlockAndTintGetter;
 import net.minecraft.core.BlockPos;
@@ -22,10 +22,10 @@ public abstract class BiomeColorsMixin {
      */
     @Inject(method = "getAverageWaterColor", at = @At("HEAD"), cancellable = true)
     private static void onGetWaterColor(BlockAndTintGetter level, BlockPos pos, CallbackInfoReturnable<Integer> cir) {
-//         Ambience ambience = Modules.get().get(Ambience.class); // AUTO-REMOVED
+        Ambience ambience = Modules.get().get(Ambience.class);
 
-//         if (ambience.isActive() && ambience.customWaterColor.get()) { // AUTO-REMOVED
-//             cir.setReturnValue(ambience.waterColor.get().getPacked()); // AUTO-REMOVED
+        if (ambience.isActive() && ambience.customWaterColor.get()) {
+            cir.setReturnValue(ambience.waterColor.get().getPacked());
         }
     }
 
@@ -34,10 +34,10 @@ public abstract class BiomeColorsMixin {
      */
     @Inject(method = "getAverageFoliageColor", at = @At("HEAD"), cancellable = true)
     private static void onGetFoliageColor(BlockAndTintGetter level, BlockPos pos, CallbackInfoReturnable<Integer> cir) {
-//         Ambience ambience = Modules.get().get(Ambience.class); // AUTO-REMOVED
+        Ambience ambience = Modules.get().get(Ambience.class);
 
-//         if (ambience.isActive() && ambience.customFoliageColor.get()) { // AUTO-REMOVED
-//             cir.setReturnValue(ambience.foliageColor.get().getPacked()); // AUTO-REMOVED
+        if (ambience.isActive() && ambience.customFoliageColor.get()) {
+            cir.setReturnValue(ambience.foliageColor.get().getPacked());
         }
     }
 
@@ -46,10 +46,10 @@ public abstract class BiomeColorsMixin {
      */
     @Inject(method = "getAverageGrassColor", at = @At("HEAD"), cancellable = true)
     private static void onGetGrassColor(BlockAndTintGetter level, BlockPos pos, CallbackInfoReturnable<Integer> cir) {
-//         Ambience ambience = Modules.get().get(Ambience.class); // AUTO-REMOVED
+        Ambience ambience = Modules.get().get(Ambience.class);
 
-//         if (ambience.isActive() && ambience.customGrassColor.get()) { // AUTO-REMOVED
-//             cir.setReturnValue(ambience.grassColor.get().getPacked()); // AUTO-REMOVED
+        if (ambience.isActive() && ambience.customGrassColor.get()) {
+            cir.setReturnValue(ambience.grassColor.get().getPacked());
         }
     }
 }

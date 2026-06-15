@@ -7,7 +7,7 @@ package meteordevelopment.meteorclient.mixin;
 
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import meteordevelopment.meteorclient.systems.modules.Modules;
-// import meteordevelopment.meteorclient.systems.modules.misc.BetterChat; // AUTO-REMOVED
+import meteordevelopment.meteorclient.systems.modules.misc.BetterChat;
 import meteordevelopment.meteorclient.systems.modules.render.Freecam;
 import meteordevelopment.meteorclient.systems.modules.render.NoRender;
 import net.minecraft.client.DeltaTracker;
@@ -86,7 +86,7 @@ public abstract class GuiMixin {
 
     @Inject(method = "onDisconnected", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/components/ChatComponent;clearMessages(Z)V"), cancellable = true)
     private void onClear(CallbackInfo ci) {
-//         if (Modules.get().get(BetterChat.class).keepHistory()) { // AUTO-REMOVED
+        if (Modules.get().get(BetterChat.class).keepHistory()) {
             ci.cancel();
         }
     }

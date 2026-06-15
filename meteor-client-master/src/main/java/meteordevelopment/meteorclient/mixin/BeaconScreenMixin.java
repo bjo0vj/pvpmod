@@ -6,7 +6,7 @@
 package meteordevelopment.meteorclient.mixin;
 
 import meteordevelopment.meteorclient.systems.modules.Modules;
-// import meteordevelopment.meteorclient.systems.modules.misc.BetterBeacons; // AUTO-REMOVED
+import meteordevelopment.meteorclient.systems.modules.misc.BetterBeacons;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.AbstractWidget;
@@ -38,7 +38,7 @@ public abstract class BeaconScreenMixin extends AbstractContainerScreen<BeaconMe
 
     @Inject(method = "init", at = @At(value = "INVOKE", target = "Ljava/util/List;clear()V", shift = At.Shift.AFTER), cancellable = true)
     private void changeButtons(CallbackInfo ci) {
-//         if (!Modules.get().get(BetterBeacons.class).isActive()) return; // AUTO-REMOVED
+        if (!Modules.get().get(BetterBeacons.class).isActive()) return;
         List<Holder<MobEffect>> effects = BeaconBlockEntity.BEACON_EFFECTS.stream().flatMap(Collection::stream).toList();
         if (Minecraft.getInstance().screen instanceof BeaconScreen beaconScreen) {
             addBeaconButton(beaconScreen.new BeaconConfirmButton(this.leftPos + 164, this.topPos + 107));
@@ -61,7 +61,7 @@ public abstract class BeaconScreenMixin extends AbstractContainerScreen<BeaconMe
 
     @Inject(method = "extractBackground", at = @At("TAIL"))
     private void onExtractBackground(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float a, CallbackInfo ci) {
-//         if (!Modules.get().get(BetterBeacons.class).isActive()) return; // AUTO-REMOVED
+        if (!Modules.get().get(BetterBeacons.class).isActive()) return;
         //this will clear the background from useless pyramid graphics
         graphics.fill(leftPos + 10, topPos + 7, leftPos + 220, topPos + 98, 0xFF212121);
     }

@@ -6,7 +6,7 @@
 package meteordevelopment.meteorclient.mixin;
 
 import meteordevelopment.meteorclient.systems.modules.Modules;
-// import meteordevelopment.meteorclient.systems.modules.player.NameProtect; // AUTO-REMOVED
+import meteordevelopment.meteorclient.systems.modules.player.NameProtect;
 import net.minecraft.util.StringDecomposer;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -21,7 +21,7 @@ public abstract class StringDecomposerMixin {
             "iterateFormatted(Ljava/lang/String;ILnet/minecraft/network/chat/Style;Lnet/minecraft/util/FormattedCharSink;)Z"},
         index = 0)
     private static String adjustText(String text) {
-//         if (Modules.get() != null) return Modules.get().get(NameProtect.class).replaceName(text); // AUTO-REMOVED
+        if (Modules.get() != null) return Modules.get().get(NameProtect.class).replaceName(text);
         else return text;
     }
 }

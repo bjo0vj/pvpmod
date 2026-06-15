@@ -6,7 +6,7 @@
 package meteordevelopment.meteorclient.utils.notebot.decoder;
 
 import meteordevelopment.meteorclient.systems.modules.Modules;
-// import meteordevelopment.meteorclient.systems.modules.misc.Notebot; // AUTO-REMOVED
+import meteordevelopment.meteorclient.systems.modules.misc.Notebot;
 import meteordevelopment.meteorclient.utils.notebot.NotebotUtils;
 import meteordevelopment.meteorclient.utils.notebot.song.Note;
 import meteordevelopment.meteorclient.utils.notebot.song.Song;
@@ -69,7 +69,7 @@ public class SongDecoders {
      * @param song A song
      */
     private static void fixSong(Song song) {
-//         Notebot notebot = Modules.get().get(Notebot.class); // AUTO-REMOVED
+        Notebot notebot = Modules.get().get(Notebot.class);
 
         var iterator = song.getNotesMap().entries().iterator();
         while (iterator.hasNext()) {
@@ -79,17 +79,17 @@ public class SongDecoders {
 
             int n = note.getNoteLevel();
             if (n < 0 || n > 24) {
-//                 if (notebot.roundOutOfRange.get()) { // AUTO-REMOVED
+                if (notebot.roundOutOfRange.get()) {
                     note.setNoteLevel(n < 0 ? 0 : 24);
                 } else {
-//                     notebot.warning("Note at tick %d out of range.", tick); // AUTO-REMOVED
+                    notebot.warning("Note at tick %d out of range.", tick);
                     iterator.remove();
                     continue;
                 }
             }
 
-//             if (notebot.mode.get() == NotebotUtils.NotebotMode.ExactInstruments) { // AUTO-REMOVED
-//                 NoteBlockInstrument newInstrument = notebot.getMappedInstrument(note.getInstrument()); // AUTO-REMOVED
+            if (notebot.mode.get() == NotebotUtils.NotebotMode.ExactInstruments) {
+                NoteBlockInstrument newInstrument = notebot.getMappedInstrument(note.getInstrument());
                 if (newInstrument != null) {
                     note.setInstrument(newInstrument);
                 }

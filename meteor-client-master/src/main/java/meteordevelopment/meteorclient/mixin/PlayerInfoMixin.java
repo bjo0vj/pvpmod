@@ -7,7 +7,7 @@ package meteordevelopment.meteorclient.mixin;
 
 import com.mojang.authlib.GameProfile;
 import meteordevelopment.meteorclient.systems.modules.Modules;
-// import meteordevelopment.meteorclient.systems.modules.player.NameProtect; // AUTO-REMOVED
+import meteordevelopment.meteorclient.systems.modules.player.NameProtect;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.PlayerInfo;
 import net.minecraft.client.resources.DefaultPlayerSkin;
@@ -26,7 +26,7 @@ public abstract class PlayerInfoMixin {
     @Inject(method = "getSkin", at = @At("HEAD"), cancellable = true)
     private void onGetTexture(CallbackInfoReturnable<PlayerSkin> cir) {
         if (getProfile().name().equals(Minecraft.getInstance().getUser().getName())) {
-//             if (Modules.get().get(NameProtect.class).skinProtect()) { // AUTO-REMOVED
+            if (Modules.get().get(NameProtect.class).skinProtect()) {
                 cir.setReturnValue(DefaultPlayerSkin.get(getProfile()));
             }
         }

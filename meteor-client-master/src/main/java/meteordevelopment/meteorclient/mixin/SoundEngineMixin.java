@@ -9,7 +9,7 @@ import com.llamalad7.mixinextras.sugar.Local;
 import meteordevelopment.meteorclient.MeteorClient;
 import meteordevelopment.meteorclient.events.world.PlaySoundEvent;
 import meteordevelopment.meteorclient.systems.modules.Modules;
-// import meteordevelopment.meteorclient.systems.modules.misc.SoundBlocker; // AUTO-REMOVED
+import meteordevelopment.meteorclient.systems.modules.misc.SoundBlocker;
 import net.minecraft.client.resources.sounds.SoundInstance;
 import net.minecraft.client.resources.sounds.TickableSoundInstance;
 import net.minecraft.client.sounds.SoundEngine;
@@ -34,6 +34,6 @@ public abstract class SoundEngineMixin {
 
     @Inject(method = "tickInGameSound()V", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/resources/sounds/TickableSoundInstance;tick()V", ordinal = 0))
     private void onTick(CallbackInfo ci, @Local(name = "instance") TickableSoundInstance instance) {
-//         if (Modules.get().get(SoundBlocker.class).shouldBlock(instance)) stop(instance); // AUTO-REMOVED
+        if (Modules.get().get(SoundBlocker.class).shouldBlock(instance)) stop(instance);
     }
 }

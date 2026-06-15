@@ -7,7 +7,7 @@ package meteordevelopment.meteorclient.mixin;
 
 import com.llamalad7.mixinextras.injector.ModifyReceiver;
 import meteordevelopment.meteorclient.systems.modules.Modules;
-// import meteordevelopment.meteorclient.systems.modules.misc.BetterChat; // AUTO-REMOVED
+import meteordevelopment.meteorclient.systems.modules.misc.BetterChat;
 import net.minecraft.client.gui.ActiveTextCollector;
 import net.minecraft.client.gui.ActiveTextCollector.Parameters;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
@@ -26,7 +26,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(targets = "net.minecraft.client.gui.components.ChatComponent$DrawingBackgroundGraphicsAccess", remap = false)
 public abstract class ChatHudUnfocusedMixin {
     @Unique
-//     private static BetterChat betterChat; // AUTO-REMOVED
+    private static BetterChat betterChat;
 
     @Final
     @Shadow
@@ -52,10 +52,10 @@ public abstract class ChatHudUnfocusedMixin {
     }
 
     @Unique
-//     private static BetterChat getBetterChat() { // AUTO-REMOVED
-//         if (betterChat == null) { // AUTO-REMOVED
-//             betterChat = Modules.get().get(BetterChat.class); // AUTO-REMOVED
+    private static BetterChat getBetterChat() {
+        if (betterChat == null) {
+            betterChat = Modules.get().get(BetterChat.class);
         }
-//         return betterChat; // AUTO-REMOVED
+        return betterChat;
     }
 }

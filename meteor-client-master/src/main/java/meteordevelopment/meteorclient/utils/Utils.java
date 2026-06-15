@@ -17,7 +17,7 @@ import meteordevelopment.meteorclient.mixininterface.IMinecraft;
 import meteordevelopment.meteorclient.settings.StatusEffectAmplifierMapSetting;
 import meteordevelopment.meteorclient.systems.modules.Modules;
 import meteordevelopment.meteorclient.systems.modules.render.BetterTooltips;
-// import meteordevelopment.meteorclient.systems.modules.world.Timer; // AUTO-REMOVED
+import meteordevelopment.meteorclient.systems.modules.world.Timer;
 import meteordevelopment.meteorclient.utils.misc.Names;
 import meteordevelopment.meteorclient.utils.player.EChestMemory;
 import meteordevelopment.meteorclient.utils.render.PeekScreen;
@@ -109,11 +109,11 @@ public class Utils {
         double tY = mc.player.getY() - mc.player.yo;
         double tZ = mc.player.getZ() - mc.player.zo;
 
-//         Timer timer = Modules.get().get(Timer.class); // AUTO-REMOVED
-//         if (timer.isActive()) { // AUTO-REMOVED
-//             tX *= timer.getMultiplier(); // AUTO-REMOVED
-//             tY *= timer.getMultiplier(); // AUTO-REMOVED
-//             tZ *= timer.getMultiplier(); // AUTO-REMOVED
+        Timer timer = Modules.get().get(Timer.class);
+        if (timer.isActive()) {
+            tX *= timer.getMultiplier();
+            tY *= timer.getMultiplier();
+            tZ *= timer.getMultiplier();
         }
 
         tX *= 20;

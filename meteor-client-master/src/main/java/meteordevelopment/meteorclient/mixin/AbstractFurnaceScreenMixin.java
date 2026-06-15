@@ -6,7 +6,7 @@
 package meteordevelopment.meteorclient.mixin;
 
 import meteordevelopment.meteorclient.systems.modules.Modules;
-// import meteordevelopment.meteorclient.systems.modules.world.AutoSmelter; // AUTO-REMOVED
+import meteordevelopment.meteorclient.systems.modules.world.AutoSmelter;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.gui.screens.inventory.AbstractFurnaceScreen;
 import net.minecraft.client.gui.screens.recipebook.RecipeUpdateListener;
@@ -25,6 +25,6 @@ public abstract class AbstractFurnaceScreenMixin<T extends AbstractFurnaceMenu> 
     public void containerTick() {
         super.containerTick();
 
-//         if (Modules.get().isActive(AutoSmelter.class)) Modules.get().get(AutoSmelter.class).tick(menu); // AUTO-REMOVED
+        if (Modules.get().isActive(AutoSmelter.class)) Modules.get().get(AutoSmelter.class).tick(menu);
     }
 }

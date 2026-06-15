@@ -16,9 +16,9 @@ import meteordevelopment.meteorclient.events.entity.player.PlayerTickMovementEve
 import meteordevelopment.meteorclient.events.entity.player.SendMovementPacketsEvent;
 import meteordevelopment.meteorclient.systems.modules.Modules;
 import meteordevelopment.meteorclient.systems.modules.movement.*;
-// import meteordevelopment.meteorclient.systems.modules.player.LiquidInteract; // AUTO-REMOVED
-// import meteordevelopment.meteorclient.systems.modules.player.NoMiningTrace; // AUTO-REMOVED
-// import meteordevelopment.meteorclient.systems.modules.player.Portals; // AUTO-REMOVED
+import meteordevelopment.meteorclient.systems.modules.player.LiquidInteract;
+import meteordevelopment.meteorclient.systems.modules.player.NoMiningTrace;
+import meteordevelopment.meteorclient.systems.modules.player.Portals;
 import meteordevelopment.meteorclient.utils.entity.fakeplayer.FakePlayerEntity;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.multiplayer.ClientLevel;
@@ -55,7 +55,7 @@ public abstract class LocalPlayerMixin extends AbstractClientPlayer {
 
     @ModifyExpressionValue(method = "handlePortalTransitionEffect", at = @At(value = "FIELD", target = "Lnet/minecraft/client/Minecraft;screen:Lnet/minecraft/client/gui/screens/Screen;", opcode = Opcodes.GETFIELD))
     private Screen modifyPortalTransitionEffect(Screen original) {
-//         if (Modules.get().isActive(Portals.class)) return null; // AUTO-REMOVED
+        if (Modules.get().isActive(Portals.class)) return null;
         return original;
     }
 
@@ -121,7 +121,7 @@ public abstract class LocalPlayerMixin extends AbstractClientPlayer {
     @ModifyReturnValue(method = "pick", at = @At("RETURN"))
     private static HitResult onUpdateTargetedEntity(HitResult original, @Local(name = "blockHitResult") HitResult blockHitResult) {
         if (original instanceof EntityHitResult ehr) {
-//             if (Modules.get().get(NoMiningTrace.class).canWork(ehr.getEntity()) && blockHitResult.getType() == HitResult.Type.BLOCK) { // AUTO-REMOVED
+            if (Modules.get().get(NoMiningTrace.class).canWork(ehr.getEntity()) && blockHitResult.getType() == HitResult.Type.BLOCK) {
                 return blockHitResult;
             } else if (ehr.getEntity() instanceof FakePlayerEntity fakePlayer && fakePlayer.noHit) {
                 return blockHitResult;
@@ -133,7 +133,7 @@ public abstract class LocalPlayerMixin extends AbstractClientPlayer {
 
     @ModifyExpressionValue(method = "pick", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/Entity;pick(DFZ)Lnet/minecraft/world/phys/HitResult;"))
     private static HitResult modifyPick(HitResult original, @Local(argsOnly = true, name = "cameraEntity") Entity cameraEntity, @Local(argsOnly = true, name = "partialTicks") float partialTicks, @Local(name = "maxDistance") double maxDistance) {
-//         if (!Modules.get().isActive(LiquidInteract.class)) return original; // AUTO-REMOVED
+        if (!Modules.get().isActive(LiquidInteract.class)) return original;
         if (original.getType() != HitResult.Type.MISS) return original;
 
         return cameraEntity.pick(maxDistance, partialTicks, true);

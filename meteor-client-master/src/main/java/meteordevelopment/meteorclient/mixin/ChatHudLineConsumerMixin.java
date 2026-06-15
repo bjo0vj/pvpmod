@@ -7,7 +7,7 @@ package meteordevelopment.meteorclient.mixin;
 
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import meteordevelopment.meteorclient.systems.modules.Modules;
-// import meteordevelopment.meteorclient.systems.modules.misc.BetterChat; // AUTO-REMOVED
+import meteordevelopment.meteorclient.systems.modules.misc.BetterChat;
 import meteordevelopment.meteorclient.systems.modules.render.NoRender;
 import net.minecraft.client.multiplayer.chat.GuiMessage;
 import net.minecraft.client.multiplayer.chat.GuiMessageTag;
@@ -21,7 +21,7 @@ public abstract class ChatHudLineConsumerMixin {
     // Player Heads, also draw immediately when line is set
     @Inject(method = "accept", at = @At("HEAD"))
     private void setLine(GuiMessage.Line line, int lineIndex, float alpha, CallbackInfo ci) {
-//         Modules.get().get(BetterChat.class).line = line; // AUTO-REMOVED
+        Modules.get().get(BetterChat.class).line = line;
     }
 
     // No Message Signature Indicator

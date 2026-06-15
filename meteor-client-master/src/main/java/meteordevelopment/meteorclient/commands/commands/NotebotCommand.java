@@ -15,7 +15,7 @@ import meteordevelopment.meteorclient.commands.arguments.NotebotSongArgumentType
 import meteordevelopment.meteorclient.events.packets.PacketEvent;
 import meteordevelopment.meteorclient.events.world.TickEvent;
 import meteordevelopment.meteorclient.systems.modules.Modules;
-// import meteordevelopment.meteorclient.systems.modules.misc.Notebot; // AUTO-REMOVED
+import meteordevelopment.meteorclient.systems.modules.misc.Notebot;
 import meteordevelopment.meteorclient.utils.notebot.song.Note;
 import meteordevelopment.orbit.EventHandler;
 import net.minecraft.client.multiplayer.ClientSuggestionProvider;
@@ -41,55 +41,55 @@ public class NotebotCommand extends Command {
     private final Map<Integer, List<Note>> song = new HashMap<>(); // tick -> notes
 
     public NotebotCommand() {
-//         super("notebot", "Allows you load notebot files"); // AUTO-REMOVED
+        super("notebot", "Allows you load notebot files");
     }
 
     @Override
     public void build(LiteralArgumentBuilder<ClientSuggestionProvider> builder) {
         builder.then(literal("help").executes(_ -> {
-//             Util.getPlatform().openUri("https://github.com/MeteorDevelopment/meteor-client/wiki/Notebot-Guide"); // AUTO-REMOVED
+            Util.getPlatform().openUri("https://github.com/MeteorDevelopment/meteor-client/wiki/Notebot-Guide");
             return SINGLE_SUCCESS;
         }));
 
         builder.then(literal("status").executes(_ -> {
-//             Notebot notebot = Modules.get().get(Notebot.class); // AUTO-REMOVED
-//             info(notebot.getStatus()); // AUTO-REMOVED
+            Notebot notebot = Modules.get().get(Notebot.class);
+            info(notebot.getStatus());
             return SINGLE_SUCCESS;
         }));
 
         builder.then(literal("pause").executes(_ -> {
-//             Notebot notebot = Modules.get().get(Notebot.class); // AUTO-REMOVED
-//             notebot.pause(); // AUTO-REMOVED
+            Notebot notebot = Modules.get().get(Notebot.class);
+            notebot.pause();
             return SINGLE_SUCCESS;
         }));
 
         builder.then(literal("resume").executes(_ -> {
-//             Notebot notebot = Modules.get().get(Notebot.class); // AUTO-REMOVED
-//             notebot.pause(); // AUTO-REMOVED
+            Notebot notebot = Modules.get().get(Notebot.class);
+            notebot.pause();
             return SINGLE_SUCCESS;
         }));
 
         builder.then(literal("stop").executes(_ -> {
-//             Notebot notebot = Modules.get().get(Notebot.class); // AUTO-REMOVED
-//             notebot.stop(); // AUTO-REMOVED
+            Notebot notebot = Modules.get().get(Notebot.class);
+            notebot.stop();
             return SINGLE_SUCCESS;
         }));
 
         builder.then(literal("randomsong").executes(_ -> {
-//             Notebot notebot = Modules.get().get(Notebot.class); // AUTO-REMOVED
-//             notebot.playRandomSong(); // AUTO-REMOVED
+            Notebot notebot = Modules.get().get(Notebot.class);
+            notebot.playRandomSong();
             return SINGLE_SUCCESS;
         }));
 
         builder.then(
             literal("play").then(
                 argument("song", NotebotSongArgumentType.create()).executes(ctx -> {
-//                     Notebot notebot = Modules.get().get(Notebot.class); // AUTO-REMOVED
+                    Notebot notebot = Modules.get().get(Notebot.class);
                     Path songPath = ctx.getArgument("song", Path.class);
                     if (songPath == null || !songPath.toFile().exists()) {
                         throw INVALID_SONG.create();
                     }
-//                     notebot.loadSong(songPath.toFile()); // AUTO-REMOVED
+                    notebot.loadSong(songPath.toFile());
                     return SINGLE_SUCCESS;
                 })
             )
@@ -98,12 +98,12 @@ public class NotebotCommand extends Command {
         builder.then(
             literal("preview").then(
                 argument("song", NotebotSongArgumentType.create()).executes(ctx -> {
-//                     Notebot notebot = Modules.get().get(Notebot.class); // AUTO-REMOVED
+                    Notebot notebot = Modules.get().get(Notebot.class);
                     Path songPath = ctx.getArgument("song", Path.class);
                     if (songPath == null || !songPath.toFile().exists()) {
                         throw INVALID_SONG.create();
                     }
-//                     notebot.previewSong(songPath.toFile()); // AUTO-REMOVED
+                    notebot.previewSong(songPath.toFile());
                     return SINGLE_SUCCESS;
                 })));
 
@@ -126,7 +126,7 @@ public class NotebotCommand extends Command {
             if (name == null || name.isEmpty()) {
                 throw INVALID_PATH.create(name);
             }
-//             Path notebotFolder = MeteorClient.FOLDER.toPath().resolve("notebot"); // AUTO-REMOVED
+            Path notebotFolder = MeteorClient.FOLDER.toPath().resolve("notebot");
             Path path = notebotFolder.resolve(String.format("%s.txt", name)).normalize();
             if (!path.startsWith(notebotFolder)) {
                 throw INVALID_PATH.create(path);
