@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the Meteor Client distribution (https://github.com/MeteorDevelopment/meteor-client).
  * Copyright (c) Meteor Development.
  */
@@ -8,7 +8,7 @@ package meteordevelopment.meteorclient.mixin;
 import com.mojang.blaze3d.systems.RenderSystem;
 import meteordevelopment.meteorclient.renderer.MeshUniforms;
 import meteordevelopment.meteorclient.systems.modules.Modules;
-import meteordevelopment.meteorclient.systems.modules.misc.InventoryTweaks;
+// import meteordevelopment.meteorclient.systems.modules.misc.InventoryTweaks; // AUTO-REMOVED
 import meteordevelopment.meteorclient.utils.render.postprocess.ChamsShader;
 import meteordevelopment.meteorclient.utils.render.postprocess.OutlineUniforms;
 import meteordevelopment.meteorclient.utils.render.postprocess.PostProcessShader;
@@ -29,6 +29,6 @@ public abstract class RenderSystemMixin {
         OutlineUniforms.flipFrame();
 
         if (Modules.get() == null || mc.player == null) return;
-        if (Modules.get().get(InventoryTweaks.class).frameInput()) ((MinecraftAccessor) mc).meteor$handleInputEvents();
+//         if (Modules.get().get(InventoryTweaks.class).frameInput()) ((MinecraftAccessor) mc).meteor$handleInputEvents(); // AUTO-REMOVED
     }
 }

@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the Meteor Client distribution (https://github.com/MeteorDevelopment/meteor-client).
  * Copyright (c) Meteor Development.
  */
@@ -10,7 +10,7 @@ import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import meteordevelopment.meteorclient.systems.modules.Modules;
 import meteordevelopment.meteorclient.systems.modules.render.Xray;
-import meteordevelopment.meteorclient.systems.modules.world.Ambience;
+// import meteordevelopment.meteorclient.systems.modules.world.Ambience; // AUTO-REMOVED
 import meteordevelopment.meteorclient.utils.render.color.Color;
 import net.minecraft.client.renderer.block.BlockAndTintGetter;
 import net.minecraft.client.renderer.block.FluidRenderer;
@@ -46,8 +46,8 @@ public abstract class FluidRendererMixin {
 
     @Inject(method = "tesselate", at = @At("HEAD"), cancellable = true)
     private void onTesselate(BlockAndTintGetter level, BlockPos pos, FluidRenderer.Output output, BlockState blockState, FluidState fluidState, CallbackInfo ci) {
-        Ambience ambience = Modules.get().get(Ambience.class);
-        AMBIENT.set(ambience.isActive() && ambience.customLavaColor.get() && fluidState.is(FluidTags.LAVA));
+//         Ambience ambience = Modules.get().get(Ambience.class); // AUTO-REMOVED
+//         AMBIENT.set(ambience.isActive() && ambience.customLavaColor.get() && fluidState.is(FluidTags.LAVA)); // AUTO-REMOVED
 
         // Xray and Wallhack
         int alpha = Xray.getFluidAlpha(fluidState, pos);
@@ -80,7 +80,7 @@ public abstract class FluidRendererMixin {
         int alpha = ALPHAS.get();
 
         if (AMBIENT.get()) {
-            Color c = Modules.get().get(Ambience.class).lavaColor.get();
+//             Color c = Modules.get().get(Ambience.class).lavaColor.get(); // AUTO-REMOVED
             vertex(builder, x, y, z, c.r, c.g, c.b, (alpha != -1 ? alpha : c.a), u, v, lightCoords);
             ci.cancel();
         } else if (alpha != -1) {
@@ -103,9 +103,9 @@ public abstract class FluidRendererMixin {
         if (alpha > 0 && alpha < 255) return ChunkSectionLayer.TRANSLUCENT;
 
         if (AMBIENT.get()) {
-            Ambience ambience = Modules.get().get(Ambience.class);
-            int a = ambience.lavaColor.get().a;
-            if (ambience.isActive() && ambience.customLavaColor.get() && a > 0 && a < 255) {
+//             Ambience ambience = Modules.get().get(Ambience.class); // AUTO-REMOVED
+//             int a = ambience.lavaColor.get().a; // AUTO-REMOVED
+//             if (ambience.isActive() && ambience.customLavaColor.get() && a > 0 && a < 255) { // AUTO-REMOVED
                 return ChunkSectionLayer.TRANSLUCENT;
             }
         }

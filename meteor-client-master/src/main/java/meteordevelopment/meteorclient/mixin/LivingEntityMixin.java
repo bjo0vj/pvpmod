@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the Meteor Client distribution (https://github.com/MeteorDevelopment/meteor-client).
  * Copyright (c) Meteor Development.
  */
@@ -15,7 +15,7 @@ import meteordevelopment.meteorclient.systems.modules.movement.Sprint;
 import meteordevelopment.meteorclient.systems.modules.movement.elytrafly.ElytraFlightModes;
 import meteordevelopment.meteorclient.systems.modules.movement.elytrafly.ElytraFly;
 import meteordevelopment.meteorclient.systems.modules.movement.elytrafly.modes.Bounce;
-import meteordevelopment.meteorclient.systems.modules.player.NoStatusEffects;
+// import meteordevelopment.meteorclient.systems.modules.player.NoStatusEffects; // AUTO-REMOVED
 import meteordevelopment.meteorclient.systems.modules.render.HandView;
 import meteordevelopment.meteorclient.systems.modules.render.NoRender;
 import net.minecraft.core.Holder;
@@ -104,7 +104,7 @@ public abstract class LivingEntityMixin extends Entity {
     @ModifyReturnValue(method = "hasEffect", at = @At("RETURN"))
     private boolean hasEffect(boolean original, Holder<MobEffect> effect) {
         if (effect == null || effect.value() == null) return original;
-        if (Modules.get().get(NoStatusEffects.class).shouldBlock(effect.value())) return false;
+//         if (Modules.get().get(NoStatusEffects.class).shouldBlock(effect.value())) return false; // AUTO-REMOVED
 
         return original;
     }

@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the Meteor Client distribution (https://github.com/MeteorDevelopment/meteor-client).
  * Copyright (c) Meteor Development.
  */
@@ -27,13 +27,13 @@ import meteordevelopment.meteorclient.mixininterface.IMinecraft;
 import meteordevelopment.meteorclient.mixininterface.IVec3;
 import meteordevelopment.meteorclient.systems.config.Config;
 import meteordevelopment.meteorclient.systems.modules.Modules;
-import meteordevelopment.meteorclient.systems.modules.misc.InventoryTweaks;
+// import meteordevelopment.meteorclient.systems.modules.misc.InventoryTweaks; // AUTO-REMOVED
 import meteordevelopment.meteorclient.systems.modules.movement.GUIMove;
-import meteordevelopment.meteorclient.systems.modules.player.FastUse;
-import meteordevelopment.meteorclient.systems.modules.player.Multitask;
+// import meteordevelopment.meteorclient.systems.modules.player.FastUse; // AUTO-REMOVED
+// import meteordevelopment.meteorclient.systems.modules.player.Multitask; // AUTO-REMOVED
 import meteordevelopment.meteorclient.systems.modules.render.ESP;
 import meteordevelopment.meteorclient.systems.modules.render.Freecam;
-import meteordevelopment.meteorclient.systems.modules.world.HighwayBuilder;
+// import meteordevelopment.meteorclient.systems.modules.world.HighwayBuilder; // AUTO-REMOVED
 import meteordevelopment.meteorclient.utils.Utils;
 import meteordevelopment.meteorclient.utils.misc.CPSUtils;
 import meteordevelopment.meteorclient.utils.misc.MeteorStarscript;
@@ -209,9 +209,9 @@ public abstract class MinecraftMixin implements IMinecraft {
 
     @Inject(method = "startUseItem", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;isItemEnabled(Lnet/minecraft/world/flag/FeatureFlagSet;)Z"))
     private void onStartUseItemHand(CallbackInfo ci, @Local(name = "heldItem") ItemStack heldItem) {
-        FastUse fastUse = Modules.get().get(FastUse.class);
-        if (fastUse.isActive()) {
-            rightClickDelay = fastUse.getItemUseCooldown(heldItem);
+//         FastUse fastUse = Modules.get().get(FastUse.class); // AUTO-REMOVED
+//         if (fastUse.isActive()) { // AUTO-REMOVED
+//             rightClickDelay = fastUse.getItemUseCooldown(heldItem); // AUTO-REMOVED
         }
     }
 
@@ -253,7 +253,7 @@ public abstract class MinecraftMixin implements IMinecraft {
 
     @Unique
     private boolean HB$stopUsingItem() {
-        HighwayBuilder b = Modules.get().get(HighwayBuilder.class);
+//         HighwayBuilder b = Modules.get().get(HighwayBuilder.class); // AUTO-REMOVED
         return !b.isActive() || !b.drawingBow;
     }
 
@@ -281,22 +281,22 @@ public abstract class MinecraftMixin implements IMinecraft {
 
     @ModifyExpressionValue(method = "startUseItem", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/multiplayer/MultiPlayerGameMode;isDestroying()Z"))
     private boolean startUseItemModifyIsBreakingBlock(boolean original) {
-        return !Modules.get().isActive(Multitask.class) && original;
+//         return !Modules.get().isActive(Multitask.class) && original; // AUTO-REMOVED
     }
 
     @ModifyExpressionValue(method = "continueAttack", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/player/LocalPlayer;isUsingItem()Z"))
     private boolean continueAttackModifyIsUsingItem(boolean original) {
-        return !Modules.get().isActive(Multitask.class) && original;
+//         return !Modules.get().isActive(Multitask.class) && original; // AUTO-REMOVED
     }
 
     @ModifyExpressionValue(method = "handleKeybinds", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/player/LocalPlayer;isUsingItem()Z", ordinal = 0))
     private boolean handleKeybindsModifyIsUsingItem(boolean original) {
-        return !Modules.get().get(Multitask.class).attackingEntities() && original;
+//         return !Modules.get().get(Multitask.class).attackingEntities() && original; // AUTO-REMOVED
     }
 
     @Inject(method = "handleKeybinds", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/player/LocalPlayer;isUsingItem()Z", ordinal = 0, shift = At.Shift.BEFORE))
     private void handleKeybindsInjectStopUsingItem(CallbackInfo ci) {
-        if (Modules.get().get(Multitask.class).attackingEntities() && player.isUsingItem()) {
+//         if (Modules.get().get(Multitask.class).attackingEntities() && player.isUsingItem()) { // AUTO-REMOVED
             if (!options.keyUse.isDown() && HB$stopUsingItem()) gameMode.releaseUsingItem(player);
             //noinspection StatementWithEmptyBody
             while (options.keyUse.consumeClick()) ;
@@ -322,18 +322,18 @@ public abstract class MinecraftMixin implements IMinecraft {
 
     @WrapWithCondition(method = "tick", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/Minecraft;handleKeybinds()V"))
     private boolean wrapHandleInputEvents(Minecraft instance) {
-        return !Modules.get().get(InventoryTweaks.class).frameInput();
+//         return !Modules.get().get(InventoryTweaks.class).frameInput(); // AUTO-REMOVED
     }
 
     @WrapWithCondition(method = "handleKeybinds", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/Minecraft;continueAttack(Z)V"))
     private boolean wrapHandleBlockBreaking(Minecraft instance, boolean down) {
         isBreaking = down;
-        return !Modules.get().get(InventoryTweaks.class).frameInput();
+//         return !Modules.get().get(InventoryTweaks.class).frameInput(); // AUTO-REMOVED
     }
 
     @Inject(method = "tick", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/Minecraft;handleKeybinds()V", shift = At.Shift.AFTER))
     private void afterHandleInputEvents(CallbackInfo ci) {
-        if (!Modules.get().get(InventoryTweaks.class).frameInput()) return;
+//         if (!Modules.get().get(InventoryTweaks.class).frameInput()) return; // AUTO-REMOVED
 
         continueAttack(isBreaking);
         isBreaking = false;
@@ -355,9 +355,9 @@ public abstract class MinecraftMixin implements IMinecraft {
     @Inject(method = "pick", at = @At("HEAD"), cancellable = true)
     private void updateTargetedEntityInvoke(float partialTicks, CallbackInfo ci) {
         Freecam freecam = Modules.get().get(Freecam.class);
-        boolean highwayBuilder = Modules.get().isActive(HighwayBuilder.class);
+//         boolean highwayBuilder = Modules.get().isActive(HighwayBuilder.class); // AUTO-REMOVED
 
-        if ((freecam.isActive() || highwayBuilder) && this.getCameraEntity() != null && !freecamSet) {
+//         if ((freecam.isActive() || highwayBuilder) && this.getCameraEntity() != null && !freecamSet) { // AUTO-REMOVED
             ci.cancel();
             Entity cameraE = this.getCameraEntity();
 
@@ -372,7 +372,7 @@ public abstract class MinecraftMixin implements IMinecraft {
             float lastYaw = cameraE.yRotO;
             float lastPitch = cameraE.xRotO;
 
-            if (highwayBuilder) {
+//             if (highwayBuilder) { // AUTO-REMOVED
                 cameraE.setYRot(this.gameRenderer.getMainCamera().yRot());
                 cameraE.setXRot(this.gameRenderer.getMainCamera().xRot());
             } else {

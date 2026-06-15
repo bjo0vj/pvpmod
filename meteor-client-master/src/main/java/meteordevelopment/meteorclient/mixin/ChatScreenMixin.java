@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the Meteor Client distribution (https://github.com/MeteorDevelopment/meteor-client).
  * Copyright (c) Meteor Development.
  */
@@ -6,7 +6,7 @@
 package meteordevelopment.meteorclient.mixin;
 
 import meteordevelopment.meteorclient.systems.modules.Modules;
-import meteordevelopment.meteorclient.systems.modules.misc.BetterChat;
+// import meteordevelopment.meteorclient.systems.modules.misc.BetterChat; // AUTO-REMOVED
 import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.gui.screens.ChatScreen;
 import org.spongepowered.asm.mixin.Mixin;
@@ -22,6 +22,6 @@ public abstract class ChatScreenMixin {
 
     @Inject(method = "init", at = @At(value = "RETURN"))
     private void onInit(CallbackInfo ci) {
-        if (Modules.get().get(BetterChat.class).isInfiniteChatBox()) input.setMaxLength(Integer.MAX_VALUE);
+//         if (Modules.get().get(BetterChat.class).isInfiniteChatBox()) input.setMaxLength(Integer.MAX_VALUE); // AUTO-REMOVED
     }
 }

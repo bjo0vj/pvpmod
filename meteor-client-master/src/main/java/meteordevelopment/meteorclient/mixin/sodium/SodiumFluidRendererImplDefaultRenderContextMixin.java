@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the Meteor Client distribution (https://github.com/MeteorDevelopment/meteor-client).
  * Copyright (c) Meteor Development.
  */
@@ -7,7 +7,7 @@ package meteordevelopment.meteorclient.mixin.sodium;
 
 import meteordevelopment.meteorclient.systems.modules.Modules;
 import meteordevelopment.meteorclient.systems.modules.render.Xray;
-import meteordevelopment.meteorclient.systems.modules.world.Ambience;
+// import meteordevelopment.meteorclient.systems.modules.world.Ambience; // AUTO-REMOVED
 import meteordevelopment.meteorclient.utils.render.color.Color;
 import net.caffeinemc.mods.sodium.client.model.color.ColorProvider;
 import net.caffeinemc.mods.sodium.client.model.quad.ModelQuadView;
@@ -30,23 +30,23 @@ import java.util.Arrays;
 @Mixin(targets = "net.caffeinemc.mods.sodium.fabric.render.FluidRendererImpl$DefaultRenderContext", remap = false)
 public abstract class SodiumFluidRendererImplDefaultRenderContextMixin {
     @Unique
-    private Ambience ambience;
+//     private Ambience ambience; // AUTO-REMOVED
 
     @Inject(method = "<init>", at = @At("TAIL"))
     private void onInit(CallbackInfo ci) {
-        ambience = Modules.get().get(Ambience.class);
+//         ambience = Modules.get().get(Ambience.class); // AUTO-REMOVED
     }
 
     @Inject(method = "getColorProvider", at = @At("HEAD"), cancellable = true)
     private void onGetColorProvider(Fluid fluid, @Nullable BlockTintSource blockTintSource, CallbackInfoReturnable<ColorProvider<FluidState>> cir) {
-        if (ambience.isActive() && ambience.customLavaColor.get() && fluid.defaultFluidState().is(FluidTags.LAVA)) {
+//         if (ambience.isActive() && ambience.customLavaColor.get() && fluid.defaultFluidState().is(FluidTags.LAVA)) { // AUTO-REMOVED
             cir.setReturnValue(this::lavaColorProvider);
         }
     }
 
     @Unique
     private void lavaColorProvider(LevelSlice slice, BlockPos pos, BlockPos.MutableBlockPos scratchPos, FluidState state, ModelQuadView quad, int[] output, boolean smooth) {
-        Color c = ambience.lavaColor.get();
+//         Color c = ambience.lavaColor.get(); // AUTO-REMOVED
         int alpha = Xray.getFluidAlpha(state, pos);
         Arrays.fill(output, Color.fromRGBA(c.r, c.g, c.b, alpha != -1 ? alpha : c.a));
     }

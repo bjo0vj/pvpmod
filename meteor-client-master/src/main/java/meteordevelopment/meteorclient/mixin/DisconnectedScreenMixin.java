@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the Meteor Client distribution (https://github.com/MeteorDevelopment/meteor-client).
  * Copyright (c) Meteor Development.
  */
@@ -6,7 +6,7 @@
 package meteordevelopment.meteorclient.mixin;
 
 import meteordevelopment.meteorclient.systems.modules.Modules;
-import meteordevelopment.meteorclient.systems.modules.misc.AutoReconnect;
+// import meteordevelopment.meteorclient.systems.modules.misc.AutoReconnect; // AUTO-REMOVED
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.layouts.LinearLayout;
 import net.minecraft.client.gui.screens.ConnectScreen;
@@ -32,7 +32,7 @@ public abstract class DisconnectedScreenMixin extends Screen {
     @Unique
     private Button reconnectBtn;
     @Unique
-    private double time = Modules.get().get(AutoReconnect.class).time.get() * 20;
+//     private double time = Modules.get().get(AutoReconnect.class).time.get() * 20; // AUTO-REMOVED
 
     protected DisconnectedScreenMixin(Component title) {
         super(title);
@@ -40,17 +40,17 @@ public abstract class DisconnectedScreenMixin extends Screen {
 
     @Inject(method = "init", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/layouts/LinearLayout;arrangeElements()V", shift = At.Shift.BEFORE))
     private void addButtons(CallbackInfo ci) {
-        AutoReconnect autoReconnect = Modules.get().get(AutoReconnect.class);
+//         AutoReconnect autoReconnect = Modules.get().get(AutoReconnect.class); // AUTO-REMOVED
 
-        if (autoReconnect.lastServerConnection != null && !autoReconnect.button.get()) {
+//         if (autoReconnect.lastServerConnection != null && !autoReconnect.button.get()) { // AUTO-REMOVED
             reconnectBtn = new Button.Builder(Component.literal(getText()), _ -> tryConnecting()).build();
             layout.addChild(reconnectBtn);
 
             layout.addChild(
                 new Button.Builder(Component.literal("Toggle Auto Reconnect"), _ -> {
-                    autoReconnect.toggle();
+//                     autoReconnect.toggle(); // AUTO-REMOVED
                     reconnectBtn.setMessage(Component.literal(getText()));
-                    time = autoReconnect.time.get() * 20;
+//                     time = autoReconnect.time.get() * 20; // AUTO-REMOVED
                 }).build()
             );
         }
@@ -58,8 +58,8 @@ public abstract class DisconnectedScreenMixin extends Screen {
 
     @Override
     public void tick() {
-        AutoReconnect autoReconnect = Modules.get().get(AutoReconnect.class);
-        if (!autoReconnect.isActive() || autoReconnect.lastServerConnection == null) return;
+//         AutoReconnect autoReconnect = Modules.get().get(AutoReconnect.class); // AUTO-REMOVED
+//         if (!autoReconnect.isActive() || autoReconnect.lastServerConnection == null) return; // AUTO-REMOVED
 
         if (time <= 0) {
             tryConnecting();
@@ -72,13 +72,13 @@ public abstract class DisconnectedScreenMixin extends Screen {
     @Unique
     private String getText() {
         String reconnectText = "Reconnect";
-        if (Modules.get().isActive(AutoReconnect.class)) reconnectText += " " + String.format("(%.1f)", time / 20);
+//         if (Modules.get().isActive(AutoReconnect.class)) reconnectText += " " + String.format("(%.1f)", time / 20); // AUTO-REMOVED
         return reconnectText;
     }
 
     @Unique
     private void tryConnecting() {
-        var lastServer = Modules.get().get(AutoReconnect.class).lastServerConnection;
+//         var lastServer = Modules.get().get(AutoReconnect.class).lastServerConnection; // AUTO-REMOVED
         ConnectScreen.startConnecting(new TitleScreen(), mc, lastServer.left(), lastServer.right(), false, null);
     }
 }

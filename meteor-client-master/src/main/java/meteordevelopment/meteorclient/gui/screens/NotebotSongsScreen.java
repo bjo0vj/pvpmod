@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the Meteor Client distribution (https://github.com/MeteorDevelopment/meteor-client).
  * Copyright (c) Meteor Development.
  */
@@ -12,7 +12,7 @@ import meteordevelopment.meteorclient.gui.widgets.containers.WTable;
 import meteordevelopment.meteorclient.gui.widgets.input.WTextBox;
 import meteordevelopment.meteorclient.gui.widgets.pressable.WButton;
 import meteordevelopment.meteorclient.systems.modules.Modules;
-import meteordevelopment.meteorclient.systems.modules.misc.Notebot;
+// import meteordevelopment.meteorclient.systems.modules.misc.Notebot; // AUTO-REMOVED
 import meteordevelopment.meteorclient.utils.Utils;
 import meteordevelopment.meteorclient.utils.notebot.decoder.SongDecoders;
 import org.apache.commons.io.FilenameUtils;
@@ -23,7 +23,7 @@ import java.nio.file.Path;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class NotebotSongsScreen extends WindowScreen {
-    private static final Notebot notebot = Modules.get().get(Notebot.class);
+//     private static final Notebot notebot = Modules.get().get(Notebot.class); // AUTO-REMOVED
 
     private WTextBox filter;
     private String filterText = "";
@@ -31,14 +31,14 @@ public class NotebotSongsScreen extends WindowScreen {
     private WTable table;
 
     public NotebotSongsScreen(GuiTheme theme) {
-        super(theme, "Notebot Songs");
+//         super(theme, "Notebot Songs"); // AUTO-REMOVED
     }
 
     @Override
     public void initWidgets() {
         // Random Song
         WButton randomSong = add(theme.button("Random Song")).minWidth(400).expandX().widget();
-        randomSong.action = notebot::playRandomSong;
+//         randomSong.action = notebot::playRandomSong; // AUTO-REMOVED
 
         // Filter
         filter = add(theme.textBox("", "Search for the songs...")).minWidth(400).expandX().widget();
@@ -58,7 +58,7 @@ public class NotebotSongsScreen extends WindowScreen {
     private void initSongsTable() {
         AtomicBoolean noSongsFound = new AtomicBoolean(true);
         try {
-            Files.list(MeteorClient.FOLDER.toPath().resolve("notebot")).forEach(path -> {
+//             Files.list(MeteorClient.FOLDER.toPath().resolve("notebot")).forEach(path -> { // AUTO-REMOVED
                 if (SongDecoders.hasDecoder(path)) {
                     String name = path.getFileName().toString();
 
@@ -69,7 +69,7 @@ public class NotebotSongsScreen extends WindowScreen {
                 }
             });
         } catch (IOException _) {
-            table.add(theme.label("Missing meteor-client/notebot folder.")).expandCellX();
+//             table.add(theme.label("Missing meteor-client/notebot folder.")).expandCellX(); // AUTO-REMOVED
             table.row();
         }
 
@@ -84,9 +84,9 @@ public class NotebotSongsScreen extends WindowScreen {
 
         table.add(theme.label(FilenameUtils.getBaseName(path.getFileName().toString()))).expandCellX();
         WButton load = table.add(theme.button("Load")).right().widget();
-        load.action = () -> notebot.loadSong(path.toFile());
+//         load.action = () -> notebot.loadSong(path.toFile()); // AUTO-REMOVED
         WButton preview = table.add(theme.button("Preview")).right().widget();
-        preview.action = () -> notebot.previewSong(path.toFile());
+//         preview.action = () -> notebot.previewSong(path.toFile()); // AUTO-REMOVED
 
         table.row();
     }

@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the Meteor Client distribution (https://github.com/MeteorDevelopment/meteor-client).
  * Copyright (c) Meteor Development.
  */
@@ -7,7 +7,7 @@ package meteordevelopment.meteorclient.mixin;
 
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import meteordevelopment.meteorclient.systems.modules.Modules;
-import meteordevelopment.meteorclient.systems.modules.misc.InventoryTweaks;
+// import meteordevelopment.meteorclient.systems.modules.misc.InventoryTweaks; // AUTO-REMOVED
 import meteordevelopment.meteorclient.systems.modules.render.BetterTooltips;
 import meteordevelopment.meteorclient.systems.modules.render.ItemHighlight;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
@@ -66,7 +66,7 @@ public abstract class AbstractContainerScreenMixin<T extends AbstractContainerMe
 
     @Inject(method = "init", at = @At("TAIL"))
     private void onInit(CallbackInfo ci) {
-        InventoryTweaks invTweaks = Modules.get().get(InventoryTweaks.class);
+//         InventoryTweaks invTweaks = Modules.get().get(InventoryTweaks.class); // AUTO-REMOVED
 
         if (invTweaks.isActive() && invTweaks.showButtons() && invTweaks.canSteal(getMenu())) {
             addRenderableWidget(
@@ -88,7 +88,7 @@ public abstract class AbstractContainerScreenMixin<T extends AbstractContainerMe
     // Inventory Tweaks
     @Inject(method = "mouseDragged", at = @At("TAIL"))
     private void onMouseDragged(MouseButtonEvent event, double dx, double dy, CallbackInfoReturnable<Boolean> cir) {
-        if (event.button() != GLFW_MOUSE_BUTTON_LEFT || doubleclick || !Modules.get().get(InventoryTweaks.class).mouseDragItemMove())
+//         if (event.button() != GLFW_MOUSE_BUTTON_LEFT || doubleclick || !Modules.get().get(InventoryTweaks.class).mouseDragItemMove()) // AUTO-REMOVED
             return;
 
         Slot slot = getHoveredSlot(event.x(), event.y());

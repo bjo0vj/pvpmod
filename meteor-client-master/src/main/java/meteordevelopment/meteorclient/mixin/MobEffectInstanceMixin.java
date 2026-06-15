@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the Meteor Client distribution (https://github.com/MeteorDevelopment/meteor-client).
  * Copyright (c) Meteor Development.
  */
@@ -6,7 +6,7 @@
 package meteordevelopment.meteorclient.mixin;
 
 import meteordevelopment.meteorclient.systems.modules.Modules;
-import meteordevelopment.meteorclient.systems.modules.player.PotionSaver;
+// import meteordevelopment.meteorclient.systems.modules.player.PotionSaver; // AUTO-REMOVED
 import meteordevelopment.meteorclient.utils.Utils;
 import net.minecraft.world.effect.MobEffectInstance;
 import org.spongepowered.asm.mixin.Mixin;
@@ -20,7 +20,7 @@ public abstract class MobEffectInstanceMixin {
     private void tick(CallbackInfo ci) {
         if (!Utils.canUpdate()) return;
 
-        if (Modules.get().get(PotionSaver.class).shouldFreeze(((MobEffectInstance) (Object) this).getEffect().value())) {
+//         if (Modules.get().get(PotionSaver.class).shouldFreeze(((MobEffectInstance) (Object) this).getEffect().value())) { // AUTO-REMOVED
             ci.cancel();
         }
     }

@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the Meteor Client distribution (https://github.com/MeteorDevelopment/meteor-client).
  * Copyright (c) Meteor Development.
  */
@@ -8,7 +8,7 @@ package meteordevelopment.meteorclient.mixin;
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import meteordevelopment.meteorclient.systems.modules.Modules;
 import meteordevelopment.meteorclient.systems.modules.render.NoRender;
-import meteordevelopment.meteorclient.systems.modules.world.Ambience;
+// import meteordevelopment.meteorclient.systems.modules.world.Ambience; // AUTO-REMOVED
 import net.minecraft.client.renderer.fog.FogRenderer;
 import org.joml.Vector4f;
 import org.objectweb.asm.Opcodes;
@@ -22,9 +22,9 @@ public abstract class FogRendererMixin {
     private Vector4f modifyFogDistance(Vector4f fogColor) {
         if (Modules.get() == null) return fogColor;
 
-        Ambience ambience = Modules.get().get(Ambience.class);
-        if (ambience.isActive() && ambience.customFogColor.get()) {
-            return ambience.fogColor.get().getVec4f();
+//         Ambience ambience = Modules.get().get(Ambience.class); // AUTO-REMOVED
+//         if (ambience.isActive() && ambience.customFogColor.get()) { // AUTO-REMOVED
+//             return ambience.fogColor.get().getVec4f(); // AUTO-REMOVED
         }
 
         return fogColor;

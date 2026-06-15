@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the Meteor Client distribution (https://github.com/MeteorDevelopment/meteor-client).
  * Copyright (c) Meteor Development.
  */
@@ -8,7 +8,7 @@ package meteordevelopment.meteorclient.mixin;
 import meteordevelopment.meteorclient.MeteorClient;
 import meteordevelopment.meteorclient.events.entity.player.PlaceBlockEvent;
 import meteordevelopment.meteorclient.systems.modules.Modules;
-import meteordevelopment.meteorclient.systems.modules.world.NoGhostBlocks;
+// import meteordevelopment.meteorclient.systems.modules.world.NoGhostBlocks; // AUTO-REMOVED
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.block.state.BlockState;
@@ -41,9 +41,9 @@ public abstract class BlockItemMixin {
         ),
         name = "placedState")
     private BlockState modifyState(BlockState placedState, BlockPlaceContext placeContext) {
-        var noGhostBlocks = Modules.get().get(NoGhostBlocks.class);
+//         var noGhostBlocks = Modules.get().get(NoGhostBlocks.class); // AUTO-REMOVED
 
-        if (noGhostBlocks.isActive() && noGhostBlocks.placing.get()) {
+//         if (noGhostBlocks.isActive() && noGhostBlocks.placing.get()) { // AUTO-REMOVED
             return getPlacementState(placeContext);
         }
 

@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the Meteor Client distribution (https://github.com/MeteorDevelopment/meteor-client).
  * Copyright (c) Meteor Development.
  */
@@ -11,8 +11,8 @@ import meteordevelopment.meteorclient.events.entity.DropItemsEvent;
 import meteordevelopment.meteorclient.events.entity.player.*;
 import meteordevelopment.meteorclient.mixininterface.IMultiPlayerGameMode;
 import meteordevelopment.meteorclient.systems.modules.Modules;
-import meteordevelopment.meteorclient.systems.modules.player.BreakDelay;
-import meteordevelopment.meteorclient.systems.modules.player.SpeedMine;
+// import meteordevelopment.meteorclient.systems.modules.player.BreakDelay; // AUTO-REMOVED
+// import meteordevelopment.meteorclient.systems.modules.player.SpeedMine; // AUTO-REMOVED
 import meteordevelopment.meteorclient.utils.world.BlockUtils;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.multiplayer.MultiPlayerGameMode;
@@ -71,7 +71,7 @@ public abstract class MultiPlayerGameModeMixin implements IMultiPlayerGameMode {
     private void onStartDestroyBlock(BlockPos pos, Direction direction, CallbackInfoReturnable<Boolean> cir) {
         if (MeteorClient.EVENT_BUS.post(StartBreakingBlockEvent.get(pos, direction)).isCancelled()) cir.cancel();
         else {
-            SpeedMine sm = Modules.get().get(SpeedMine.class);
+//             SpeedMine sm = Modules.get().get(SpeedMine.class); // AUTO-REMOVED
             BlockState state = mc.level.getBlockState(pos);
 
             if (!sm.instamine() || !sm.filter(state.getBlock())) return;
@@ -127,7 +127,7 @@ public abstract class MultiPlayerGameModeMixin implements IMultiPlayerGameMode {
 
     @ModifyExpressionValue(method = "continueDestroyBlock", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/block/state/BlockState;getDestroyProgress(Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;)F"))
     private float modifyBlockBreakingDelta(float original) {
-        if (Modules.get().get(BreakDelay.class).preventInstaBreak() && original >= 1) {
+//         if (Modules.get().get(BreakDelay.class).preventInstaBreak() && original >= 1) { // AUTO-REMOVED
             BlockBreakingCooldownEvent event = MeteorClient.EVENT_BUS.post(BlockBreakingCooldownEvent.get(destroyDelay));
             destroyDelay = event.cooldown;
             return 0;

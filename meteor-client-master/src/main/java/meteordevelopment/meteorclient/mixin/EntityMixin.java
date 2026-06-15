@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the Meteor Client distribution (https://github.com/MeteorDevelopment/meteor-client).
  * Copyright (c) Meteor Development.
  */
@@ -20,7 +20,7 @@ import meteordevelopment.meteorclient.systems.modules.render.ESP;
 import meteordevelopment.meteorclient.systems.modules.render.FreeLook;
 import meteordevelopment.meteorclient.systems.modules.render.Freecam;
 import meteordevelopment.meteorclient.systems.modules.render.NoRender;
-import meteordevelopment.meteorclient.systems.modules.world.HighwayBuilder;
+// import meteordevelopment.meteorclient.systems.modules.world.HighwayBuilder; // AUTO-REMOVED
 import meteordevelopment.meteorclient.utils.Utils;
 import meteordevelopment.meteorclient.utils.entity.fakeplayer.FakePlayerEntity;
 import net.minecraft.client.Camera;
@@ -174,7 +174,7 @@ public abstract class EntityMixin {
         if (freecam.isActive()) {
             freecam.changeLookDirection(xo * 0.15, yo * 0.15);
             ci.cancel();
-        } else if (Modules.get().isActive(HighwayBuilder.class)) {
+//         } else if (Modules.get().isActive(HighwayBuilder.class)) { // AUTO-REMOVED
             Camera camera = mc.gameRenderer.getMainCamera();
             ((ICamera) camera).meteor$setRot(camera.yRot() + xo * 0.15, camera.xRot() + yo * 0.15);
             ci.cancel();

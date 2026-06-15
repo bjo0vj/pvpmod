@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This file is part of the Meteor Client distribution (https://github.com/MeteorDevelopment/meteor-client).
  * Copyright (c) Meteor Development.
  */
@@ -27,7 +27,7 @@ import meteordevelopment.meteorclient.pathing.BaritoneUtils;
 import meteordevelopment.meteorclient.systems.config.Config;
 import meteordevelopment.meteorclient.systems.modules.Modules;
 import meteordevelopment.meteorclient.systems.modules.movement.Velocity;
-import meteordevelopment.meteorclient.systems.modules.player.NoRotate;
+// import meteordevelopment.meteorclient.systems.modules.player.NoRotate; // AUTO-REMOVED
 import meteordevelopment.meteorclient.systems.modules.render.NoRender;
 import meteordevelopment.meteorclient.utils.player.ChatUtils;
 import net.minecraft.client.Minecraft;
@@ -136,8 +136,8 @@ public abstract class ClientPacketListenerMixin extends ClientCommonPacketListen
 
     @Inject(method = "handleMovePlayer", at = @At("HEAD"))
     private void onHandleMovePlayerHead(ClientboundPlayerPositionPacket packet, CallbackInfo ci, @Share("noRotateYaw") LocalFloatRef yawRef, @Share("noRotatePitch") LocalFloatRef pitchRef) {
-        NoRotate noRotate = Modules.get().get(NoRotate.class);
-        if (!noRotate.isActive() || minecraft.player == null) return;
+//         NoRotate noRotate = Modules.get().get(NoRotate.class); // AUTO-REMOVED
+//         if (!noRotate.isActive() || minecraft.player == null) return; // AUTO-REMOVED
 
         yawRef.set(minecraft.player.getYRot());
         pitchRef.set(minecraft.player.getXRot());
@@ -145,8 +145,8 @@ public abstract class ClientPacketListenerMixin extends ClientCommonPacketListen
 
     @Inject(method = "handleMovePlayer", at = @At("RETURN"))
     private void onHandleMovePlayerReturn(ClientboundPlayerPositionPacket packet, CallbackInfo ci, @Share("noRotateYaw") LocalFloatRef yawRef, @Share("noRotatePitch") LocalFloatRef pitchRef) {
-        NoRotate noRotate = Modules.get().get(NoRotate.class);
-        if (!noRotate.isActive() || minecraft.player == null) return;
+//         NoRotate noRotate = Modules.get().get(NoRotate.class); // AUTO-REMOVED
+//         if (!noRotate.isActive() || minecraft.player == null) return; // AUTO-REMOVED
 
         float savedYaw = yawRef.get();
         float savedPitch = pitchRef.get();
