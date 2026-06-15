@@ -6,7 +6,7 @@
 package meteordevelopment.meteorclient.systems.modules.render;
 
 import meteordevelopment.meteorclient.events.meteor.ActiveModulesChangedEvent;
-import meteordevelopment.meteorclient.events.meteor.MouseButtonEvent;
+import meteordevelopment.meteorclient.events.meteor.MouseClickEvent;
 import meteordevelopment.meteorclient.events.render.Render2DEvent;
 import meteordevelopment.meteorclient.events.world.TickEvent;
 import meteordevelopment.meteorclient.settings.BoolSetting;
@@ -91,7 +91,7 @@ public class PvPHudModule extends Module {
     }
 
     @EventHandler
-    private void onMouseButton(MouseButtonEvent event) {
+    private void onMouseButton(MouseClickEvent event) {
         if (event.action == meteordevelopment.meteorclient.utils.misc.input.KeyAction.Press) {
             if (event.button == 0 || event.button == 1) { // Left or right click
                 clicks.add(System.currentTimeMillis());
